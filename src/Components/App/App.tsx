@@ -17,10 +17,10 @@ const App = () => {
     setCountries(res.data);
   }, [])
 
-  const responseInfo = useCallback(async () => {
+  const responseInfo = useCallback(async (code: string) => {
     const res = await axios.get(URL_CODE + code);
     setInfoCountries(res.data);
-  }, [code])
+  }, [])
 
   useEffect(() => {
     countriesResponse().catch(console.error);
@@ -28,7 +28,7 @@ const App = () => {
 
   useEffect(() => {
     if (code !== '') {
-      responseInfo().catch(console.error);
+      responseInfo(code).catch(console.error);
     }
   }, [code, responseInfo])
 
